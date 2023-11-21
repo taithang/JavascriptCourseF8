@@ -98,47 +98,47 @@
 // console.log(getTotalGold(sports)); // Output: 23
 
 //Dùng reduce để flat mảng
-var depthArray = [1, 2, [3, 4], 5, 6, [7, 8, 9]];
-var flatArray = depthArray.reduce(function (flatOutput, depthItem) {
-  return flatOutput.concat(depthItem);
-}, []);
+// var depthArray = [1, 2, [3, 4], 5, 6, [7, 8, 9]];
+// var flatArray = depthArray.reduce(function (flatOutput, depthItem) {
+//   return flatOutput.concat(depthItem);
+// }, []);
 
-//Lấy ra các khoá học đưa vào 1 mảng mới
-var topics = [
-  {
-    topic: "Front-end",
-    courses: [
-      {
-        id: 1,
-        title: "HTML,CSS",
-      },
-      {
-        id: 2,
-        title: "Javascript",
-      },
-    ],
-  },
-  {
-    topic: "Back-end",
-    courses: [
-      {
-        id: 1,
-        title: "PHP",
-      },
-      {
-        id: 2,
-        title: "Nodejs",
-      },
-    ],
-  },
-];
+// //Lấy ra các khoá học đưa vào 1 mảng mới
+// var topics = [
+//   {
+//     topic: "Front-end",
+//     courses: [
+//       {
+//         id: 1,
+//         title: "HTML,CSS",
+//       },
+//       {
+//         id: 2,
+//         title: "Javascript",
+//       },
+//     ],
+//   },
+//   {
+//     topic: "Back-end",
+//     courses: [
+//       {
+//         id: 1,
+//         title: "PHP",
+//       },
+//       {
+//         id: 2,
+//         title: "Nodejs",
+//       },
+//     ],
+//   },
+// ];
 
-var newTopics = topics.reduce(
-  (newArray, currentTopic) =>
-    newArray.concat(currentTopic.courses.map((course) => course.title)),
-  []
-);
-console.log(newTopics);
+// var newTopics = topics.reduce(
+//   (newArray, currentTopic) =>
+//     newArray.concat(currentTopic.courses.map((course) => course.title)),
+//   []
+// );
+// console.log(newTopics);
 
 //Cho trước danh sách một số bộ phim, hãy viết hàm calculateRating để tính điểm trung bình IMDB của những bộ phim mà Christopher Nolan làm đạo diễn.
 var watchList = [
