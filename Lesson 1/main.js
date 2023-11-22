@@ -272,18 +272,50 @@
 // const result = numbers.reduce2((total, number) => (total += number), 0);
 // console.log(result);
 
-function arrToObj(arr) {
-  let newObj = arr.reduce((obj, [key, value]) => {
-    obj[key] = value;
-    return obj;
-  }, {});
-  return newObj;
-}
-var arr = [
-  ["name", "Sơn Đặng"],
-  ["age", 18],
-];
-console.log(arrToObj(arr));
+// function arrToObj(arr) {
+//   let newObj = arr.reduce((obj, [key, value]) => {
+//     obj[key] = value;
+//     return obj;
+//   }, {});
+//   return newObj;
+// }
+// var arr = [
+//   ["name", "Sơn Đặng"],
+//   ["age", 18],
+// ];
+// console.log(arrToObj(arr));
 
-let arr2 = [1, 6, 9, 5, 4];
-console.log(arr2.includes());
+//Callback function
+// function myFunction(myCallBack = (value) => console.log("Value: ", value)) {
+//   myCallBack("Học lập trình");
+// }
+// myFunction();
+
+//Tạo map function
+// Array.prototype.map2 = function (callback) {
+//   var output = [];
+//   var arrayLength = this.length;
+//   for (let i = 0; i < arrayLength; i++) {
+//     var result = callback(this[i], i);
+//     output.push(result);
+//   }
+//   return output;
+// };
+// var courses = ["Javascript", "PHP", "Ruby"];
+// courses.map2(function (course, index) {
+//   console.log(course, index);
+// });
+// var htmls = courses.map2(function (course) {
+//   return `<h2>${course}<h2>`;
+// });
+// console.log(htmls.join(""));
+
+var h1 = document.querySelector("h1");
+h1.title = "F8 - Học lập trình để đi làm";
+h1.setAttribute("data-title", "F8 - Học lập trình để đi làm");
+
+var a = document.querySelector("a");
+a.setAttribute("href", "http://fullstack.edu.vn/");
+a.target = "_blank";
+console.log(h1);
+console.log(a);

@@ -11,7 +11,7 @@
 - indexOf là phương thức dùng để tìm vị trí của string. Nếu như không tìm thấy nó sẽ trả về -1
 - Khi dùng hàm replace thì nó sẽ thay thế kí tự chuỗi đầu tiên
 - Khi dùng hàm charAt mà index không có nó sẽ trả về chuỗi rỗng, nhưng nếu dùng string[index] thì nó sẽ trả về giá trị undefined.
-- includes(element, indexStart): kiểm tra xem trong mảng có phần tử đó hay không
+- `includes(element, indexStart)`: kiểm tra xem trong chuỗi có phần tử đó hay không
 
 ## 3. Array
 
@@ -53,6 +53,8 @@
 `var nickNameKey = 'nickName'`
 
 - _Cách tạo object_:
+
+```Javascript
   var myInfo = {
   name: 'Hoang Tai Thang',
   age: 10,
@@ -62,6 +64,8 @@
   return this.name
   },
   }
+```
+
 - _Cách thêm properties_:
   C1: `myInfo.email = 'taithangdn99@gmail.com'`
   C2: `myInfo['email'] = 'taithangdn99@gmail.com'`
@@ -75,6 +79,8 @@
 **_Tạo object constructor_**
 
 - _Cách tạo object constructor:_
+
+```Javascript
   function User(firstName, lastName, avatar) {
   this.firstName = firstName;
   this.lastName = lastName;
@@ -83,6 +89,7 @@
 
   var author = new User('Tai Thang', 'Hoang', 'Avatar');
   var user = new User('Gia Bao', 'Hoang', 'Avatar');
+```
 
 **_Object prototype_**
 
@@ -111,13 +118,15 @@
 
 ## 5. Lệnh if/else và switch/case
 
-**_\if/else_**
+**_if/else_**
 
 if(condition){code}
 else if(condition){code}
 else {code}
 
-**_\Switch/case_**
+**_Switch/case_**
+
+```Javascript
 var date = 3;
 
 switch (date) {
@@ -137,6 +146,7 @@ case 4:
 return 'date 4';
 break;
 }
+```
 
 - Nếu như không dùng từ khoá break thì đoạn mã sẽ tiếp tục chạy cho tới khi nó gặp break thì nó sẽ dừng. Chúng ta thường bỏ break ở mỗi trường hợp khi chúng ta có những trường hợp có chung diều kiện.
 
@@ -146,30 +156,46 @@ break;
 
 - Cú pháp viết tắt của if/else
   Example:
+
+  ```Javascript
   var course = {
   name: 'Javascript',
   coin: 250,
   }
+  ```
 
-  C1: if(course.coin > 0) {
+  C1:
+
+  ```Javascript
+  if(course.coin > 0) {
   console.log(`${course.coin} Coins`)
   } else {
   console.log('Miễn phí')
   }
+  ```
 
-  C2: var result = course.coin > 0 ? `${course.coin} Coins` : 'Miễn phí';
+  C2:
+
+  ```Javascript
+  var result = course.coin > 0 ? `${course.coin} Coins` : 'Miễn phí';
+  ```
 
 ## 6. Vòng lặp
 
 **_For_**
+
+```Javascript
 for (var i = 1; i <= 1000; i++ ) {
 return i;
 }
+```
 
 **_For/in loop_**
 
 - Dùng để lấy các property của object
   Example:
+
+  ```Javascript
   var myInfo = {
   name: 'Tai Thang',
   age: 23,
@@ -180,6 +206,7 @@ return i;
   console.log(key)
   console.log(myInfo[key])
   }
+  ```
 
   Ta sẽ được hai kết quả:
   1: name, age, address dưới dạng chuỗi
@@ -193,18 +220,22 @@ return i;
 - Dùng để lấy giá trị của một mảng, hoặc lấy kí tự của một chuỗi (không thể lấy giá trị trong một object).
 
 - Để có thể lấy giá trị từ một object ta có thể dùng các cách như sau:
+
+  ```Javascript
   var myInfo = {
   name: 'Tai Thang',
   age: 23,
   }
 
-for (var value of Object.keys(myInfo)) {
-console.log(myInfo[value])
-}
+   for (var value of Object.keys(myInfo)) {
+   console.log(myInfo[value])
+   }
 
-for (var value of Object.value(myInfo)) {
-console.log(value)
-}
+   for (var value of Object.value(myInfo)) {
+   console.log(value)
+   }
+
+  ```
 
 **_Do/while và While_**
 
@@ -213,22 +244,29 @@ console.log(value)
 **_Continue và break_**
 
 - **Break**: dùng để thoát khỏi vòng lặp
+
+  ```Javascript
   for(var i = 0; i < 10; i++) {
   console.log(i)
   if (i >= 5) {
   break;
   }
   }
+  ```
 
 - **Continue**: dùng để bỏ qua và tiếp tục chạy vòng lặp
+  ```Javascript
   for(var i = 0; i < 10; i++) {
   if(i%2 !== 0) {
   continue;
   }
   console.log(i)
   }
+  ```
 
 **_Nested loop - Vòng lặp lồng nhau_**
+
+```Javascript
 var myArray = [
 [1,2], [3,4], [5,6]
 ]
@@ -238,54 +276,194 @@ for (var j = 0; j < myArray[i].length; j++) {
 console.log(myArray[i][j])
 }
 }
+```
 
 Kết quả in ra sẽ là 1, 2, 3, 4, 5, 6
 
 **_Đệ quy_**
 
 - Giải bài toán xoá phần tử trùng lặp mà không dùng method của Javascript
-  var array = ['a', 'b', 'c', 'a', 'b', 'c']
-  console.log([...(new Set(array))])
+  `var array = ['a', 'b', 'c', 'a', 'b', 'c']`
+  `console.log([...(new Set(array))])`
 
 - Để dùng đệ quy cần phải nắm được:
 
-  1.  **Xác định điểm dừng**
-  2.  **Logic handle => Tạo ra điểm dừng**
+1.  **Xác định điểm dừng**
+2.  **Logic handle => Tạo ra điểm dừng**
 
-  _Example count down Đệ quy:_
+_Example count down Đệ quy:_
 
-  function countDown(num) {
-  if(num > 0) {
-  console.log(num);
-  return countDown(num - 1)
-  }
-  return num;
-  }
+```Javascript
+function countDown(num) {
+if(num > 0) {
+console.log(num);
+return countDown(num - 1)
+}
+return num;
+}
 
-  countDown(3)
+countDown(3)
+```
 
-  _Example vòng lặp đệ quy:_
+_Example vòng lặp đệ quy:_
 
-  function loop(start, end, cb) {
-  if(start < end) {
-  cb(start);
-  return loop(start + 1, end, cb)
-  }
-  }
+```Javascript
+function loop(start, end, cb) {
+if(start < end) {
+cb(start);
+return loop(start + 1, end, cb)
+}
+}
 
-  var array = ['Javascript', 'PHP', 'Ruby'];
+var array = ['Javascript', 'PHP', 'Ruby'];
 
-  loop(0, array.length, function(index) {
-  console.log(array[index])
-  })
+loop(0, array.length, function(index) {
+console.log(array[index])
+})
+```
 
-  Example tính giai thừa bằng đệ quy:
+_Example tính giai thừa bằng đệ quy:_
 
-  function giaiThua(number) {
-  if(number > 0) {
-  return number \* giaiThua(number - 1)
-  }
-  return 1;
-  }
+```Javascript
+function giaiThua(number) {
+if(number > 0) {
+return number \* giaiThua(number - 1)
+}
+return 1;
+}
 
-  console.log(giaiThua(6))
+console.log(giaiThua(6))
+```
+
+## 7. Callback function
+
+- _Định nghĩa_: là một hàm được truyền qua đối số, sẽ được thực thi khi được gọi từ một hàm lấy nó làm đối số,
+
+- Tạo hàm forEach():
+
+```Javascript
+Array.prototype.forEach2 = function(callback){
+   for(var index in this) {
+      if(this.hasOwnProperty(index)) {
+        callback(this[index], index, this)
+      }
+   }
+}
+
+var courses = [
+   'Javascript',
+   'PHP',
+   'Ruby'
+];
+
+courses.forEach2(function(course, index, array) {
+   console.log(course, index, array)
+})
+```
+
+```Javascript
+var courses = [
+   {
+      name: 'Javascript',
+      coin: 680,
+      isFinish: true,
+   },
+   {
+      name: 'PHP',
+      coin: 860,
+      isFinish: false,
+   },
+   {
+      name: 'Ruby',
+      coin: 980,
+      isFinish: false,
+   }
+]
+
+```
+
+- Tạo hàm filter():
+
+```Javascript
+Array.prototype.filter2 = function(callback) {
+   var output = [];
+   for (var index in this) {
+      if (this.hasOwnProperty(index)) {
+        var result = callback(this[index], index, this)
+        if (result) {
+         output.push(this[index]);
+        }
+      }
+   }
+   return output;
+}
+
+var filterCourses = courses.filter2(function(course, index, array) {
+   return course.coin > 700;
+})
+```
+
+- Tạo hàm some():
+
+```Javascript
+Array.prototype.some2 = function(callback) {
+   var output = false;
+   for (var index in this) {
+      if (this.hasOwnProperty(index)) {
+         if (callback(this[index], index, this)) {
+            return output = true;
+            break;
+         };
+      }
+   }
+   return output;
+}
+
+var result = courses.some2(function(course, index, array) {
+   return course.isFinish;
+})
+```
+
+- Tạo hàm every():
+
+```Javascript
+Array.prototype.every2 = function(callback) {
+   var output = true;
+   for (var index in this) {
+      if (this.hasOwnProperty(index)) {
+         var result = callback(this[index], index, this);
+         if (!result) {
+            output = false;
+            break;
+         }
+      }
+   }
+   return output;
+}
+
+var result = courses.every2(function(course, index, array) {
+   return course.coin > 680;
+})
+```
+
+## 8. DOM
+
+- _Định nghĩa_: DOM là Mô hình đối tượng tài liệu.
+- Có ba thành phần: Element(thẻ tag), Attribute(class,id,...), Text(Nội dung)
+- Node: element, attribute, text
+- Để lấy được thành phần element của DOM ta lấy chúng thông qua id, class, CSS Selector, HTML collection
+- Để tương tác được với nodeAttribute ta phải lấy được nodeElement trước.
+
+**_Document Object_**
+
+- document.write(string): in ra dòng chữ trên DOM
+- document.getelementById(string): lấy element thông qua id
+- document.getelementsByClassName(string): lấy tất cả element thông qua className
+- document.getelementsByTagName(string): lấy tất cả element thông qua tagName
+- document.querySelector(string): lấy element thông qua CSS selector
+- document.querySelectorAll(string): lấy tất cả element thông qua CSS selector
+- document.title = 'Heading': thêm attribute vào element hoặc lấy ra attribute của element nếu như attribute đó phải hợp lệ với element đó
+- document.setAttribute(nameOfAttribute, valueOfAttribute): dùng để thêm attribute vào element bất kỳ.
+- document.getAttribute(nameOfAttribute): lấy ra attribute của element
+- document.innerText: dùng để lấy ra textNode hoặc gán text mới vào textNode nhưng nó sẽ trả về những gì chúng ta nhìn thấy trên trình duyệt
+- document.textContent: dùng để lấy ra textNode hoặc gán text mới vào textNode và nó trả về cả nội dung nguyên bản của text ở trong html
