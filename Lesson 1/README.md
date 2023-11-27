@@ -456,14 +456,112 @@ var result = courses.every2(function(course, index, array) {
 
 **_Document Object_**
 
-- document.write(string): in ra dòng chữ trên DOM
-- document.getelementById(string): lấy element thông qua id
-- document.getelementsByClassName(string): lấy tất cả element thông qua className
-- document.getelementsByTagName(string): lấy tất cả element thông qua tagName
-- document.querySelector(string): lấy element thông qua CSS selector
-- document.querySelectorAll(string): lấy tất cả element thông qua CSS selector
-- document.title = 'Heading': thêm attribute vào element hoặc lấy ra attribute của element nếu như attribute đó phải hợp lệ với element đó
-- document.setAttribute(nameOfAttribute, valueOfAttribute): dùng để thêm attribute vào element bất kỳ.
-- document.getAttribute(nameOfAttribute): lấy ra attribute của element
-- document.innerText: dùng để lấy ra textNode hoặc gán text mới vào textNode nhưng nó sẽ trả về những gì chúng ta nhìn thấy trên trình duyệt
-- document.textContent: dùng để lấy ra textNode hoặc gán text mới vào textNode và nó trả về cả nội dung nguyên bản của text ở trong html
+- `document.write(string)`: in ra dòng chữ trên DOM
+- `document.getelementById(string)`: lấy element thông qua id
+- `document.getelementsByClassName(string)`: lấy tất cả element thông qua className
+- `document.getelementsByTagName(string)`: lấy tất cả element thông qua tagName
+- `document.querySelector(string)`: lấy element thông qua CSS selector
+- `document.querySelectorAll(string)`: lấy tất cả element thông qua CSS selector
+- `document.title = 'Heading'`: thêm attribute vào element hoặc lấy ra attribute của element nếu như attribute đó phải hợp lệ với element đó
+- `document.setAttribute(nameOfAttribute, valueOfAttribute)`: dùng để thêm attribute vào element bất kỳ.
+- `document.getAttribute(nameOfAttribute)`: lấy ra attribute của element
+- `document.innerText`: dùng để lấy ra textNode hoặc gán text mới vào textNode nhưng nó sẽ trả về những gì chúng ta nhìn thấy trên trình duyệt
+- `document.textContent`: dùng để lấy ra textNode hoặc gán text mới vào textNode và nó trả về cả nội dung nguyên bản của text ở trong html
+- `document.innerHTML`: thêm elementNode, attributeNode, textNode vào trong element khác ở trong DOM
+- `document.outerHTML`: nó có chức năng giống innerHTML nhưng nó sẽ lấy luôn cả thằng element được gọi tới
+- `document.style`: dùng để thay đổi CSS cho một element.
+- Ta có thể add nhiều style bằng cách:
+  ```Javascript
+      var change = document.querySelector('.box')
+      Object.assign(change.style, {
+         width: '100px',
+         height: '200px',
+         backgroundColor: 'green',
+      })
+  ```
+- `document.classList`: nó sẽ trả về một list các class của một element
+  - `document.classList.add(string)`: thêm class name vào một element, ta có thể thêm nhiều class vào một element bằng cách thêm dấu ,
+  - `document.classList.contains(string)`: kiểm tra xem element đó có class đó hay không. Nó sẽ trả về giá trị true/false
+  - `document.classList.remove(string)`: xoá class trong element
+  - `document.classList.toggle(string)`: bật tắt class trong element
+
+**_DOM Event_**
+
+- Khi ta sử dụng event mouseclick, ta có thể dùng e.which để lấy ra được mã keyboard mà ta nhấn.
+- `e.preventDefault()`: ngăn chặn trình duyệt mặc định.
+- `e.stopPropagation()`: ngăn chặn sự kiện nổi bọt. Sự kiện nỗi bọt là khi chúng ta có nhiều event trong một thẻ div, khi ta nhấn vào một cái button thì thẻ cha của nó cũng sẽ có event click và trả về cho chúng ta hai giá trị của event click, để ngăn chặn điều đó ta thêm vào method stopPropagation() để chặn sự nổi bọt của event.
+- Ta có thể thêm event vào một element bằng method `addEventListener()` hoặc gỡ bỏ event bằng method `removeEventListener()`;
+- Ta dùng DOM event khi chúng ta giải quyết những event đơn giản, còn eventListener dùng để giải quyết những function phức tạp và khi chúng ta cần gỡ bỏ event ta nên dùng add eventlistener.
+- Ta có thể tạo event bằng các cách như sau:
+
+  - _Event Attribute_:
+
+  ```Javascript
+     <h1 id='text' onclick = 'changeText()'>Hello</h1>
+     function changeText() {
+      document.getElementById('text').innerText = 'Xin Chao!'
+     }
+  ```
+
+  - _Javascript Event_:
+
+  ```Javascript
+      <h1 id='text'>Hello</h1>
+      document.getElementById('text').onclick = function() {changeText()}
+
+     function changeText() {
+      document.getElementById('text').innerText = 'Xin Chao!'
+     }
+
+  ```
+
+  - _Method addEventListener()_:
+
+    ```Javascript
+    <h1 id='text'>Hello</h1>
+    document.getElementById('text').addEventListener('click',changeText)
+
+    function changeText() {
+    document.getElementById('text').innerText = 'Xin Chao!'
+    }
+    ```
+
+**_JSON_**
+
+- _Định nghĩa_: là một định dạng dữ liệu (chuỗi), nó có thể thể hiện dạng dữ liệu cho chúng ta như Number, Boolean, Null, Array, Object.
+- Trong JSON khi ta định dạng array, object thì các phần tử trong array và key và value của object phải bỏ trong dấu nháy kép.
+- `Parse()`: chuyển đổi từ JSON qua Javascript types
+- `Stringify()`: chuyển đổi từ Javascript types qua JSON
+
+**_Promise_**
+
+- Sync: là thao tác đồng bộ, chạy một luồng từ trên xuống dưới.
+- Async: là thao tác bất đồng bộ, chạy đa luồng và những method yêu cầu thời gian thì sẽ hiển thị sau. Những method bất đồng bộ: setTimeout(), setInterval(), fetch(), XMLHttpRequest(), các dạng method reading file, những method request animation frame.
+- Promise(): dùng để giải quyết bất đồng bộ, callback hell
+- Code:
+
+```Javascript
+  var promise = new Promise(
+      function(resolve, reject) {
+         //Thành công: resolve()
+         //Thất bại: reject()
+         resolve([
+            {
+               id: 1,
+               name: 'Javascript'
+            }
+         ]);
+      }
+  );
+
+  promise
+      .then(function(courses) {
+         console.log(courses)
+      })
+      .catch(function() {
+         console.log('Failure')
+      })
+      .finally(function() {
+         console.log('Done')
+      })
+```

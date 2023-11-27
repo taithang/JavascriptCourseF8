@@ -310,12 +310,14 @@
 // });
 // console.log(htmls.join(""));
 
-var h1 = document.querySelector("h1");
-h1.title = "F8 - Học lập trình để đi làm";
-h1.setAttribute("data-title", "F8 - Học lập trình để đi làm");
-
-var a = document.querySelector("a");
-a.setAttribute("href", "http://fullstack.edu.vn/");
-a.target = "_blank";
-console.log(h1);
-console.log(a);
+//Tạo ra giao diên bằng innerHTML
+// var courses = ["HTML & CSS", "Javascript", "PHP", "Java"];
+// function render(courses) {
+//   var list = document.querySelector(".courses-list");
+//   var str = courses.map((course) => `<li>${course}</li>`).join("");
+//   list.innerHTML = str;
+// }
+// render(courses);
+// console.log(box);
+var box = document.querySelectorAll("div");
+box.forEach((value) => value.classList.add("box"));
