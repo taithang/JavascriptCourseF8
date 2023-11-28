@@ -633,3 +633,18 @@ console.log(sum(2, 2))
 
 - Là cách viết khác của constructor function
 - Example:
+
+```Javascript
+class Course {
+  constructor(name, price) {
+    this.name = name;
+    this.price = price;
+  }
+  getThisName() {
+    return this.name;
+  }
+}
+
+const phpCoures = new Course("PHP", 1000);
+const javaCoures = new Course("Java", 1000);
+```

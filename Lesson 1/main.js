@@ -494,9 +494,11 @@
 // }
 class Course {
   constructor(name, price) {
-    (this.name = name), (this.price = price), getThisName(){
-        return this.name
-    }
+    this.name = name;
+    this.price = price;
+  }
+  getThisName() {
+    return this.name;
   }
 }
 
