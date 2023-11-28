@@ -526,7 +526,7 @@ var result = courses.every2(function(course, index, array) {
     }
     ```
 
-**_JSON_**
+## 9. JSON
 
 - _Định nghĩa_: là một định dạng dữ liệu (chuỗi), nó có thể thể hiện dạng dữ liệu cho chúng ta như Number, Boolean, Null, Array, Object.
 - Trong JSON khi ta định dạng array, object thì các phần tử trong array và key và value của object phải bỏ trong dấu nháy kép.
@@ -565,3 +565,71 @@ var result = courses.every2(function(course, index, array) {
          console.log('Done')
       })
 ```
+
+**_Fetch_**
+
+- API(URL): Application Programming Interface, là cổng giao tiếp giữa các phần mềm.
+  _Example_:
+
+```Javascript
+var postApi = "https://jsonplaceholder.typicode.com/posts";
+fetch(postApi)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (posts) {
+    var htmls = posts.map(function (post) {
+      return `<li><h2>${post.title}</h2><p>${post.body}</p></li>`;
+    });
+    var html = htmls.join("");
+    document.getElementById("posts-block").innerHTML = html;
+  });
+```
+
+- JSON server: fake API server
+- CRUD:
+  - Create: Tạo mới -> POST
+  - Read: Lấy dữ liệu -> GET
+  - Update: Chỉnh sửa -> PUT/PATCH
+  - Delete: Xoá -> DELETE
+
+## 10. ES6
+
+**_Var/Let, Const_**
+
+- Đều có thể sử dụng để khai báo biến.
+- Phạm vi scope block của var là ở mọi nơi, trong khi let và const thì phạm vi của nó chỉ ở trong scope của nó.
+- Hoisting: sẽ đưa biến của bạn lên trên đầu, chỉ có var mới được hỗ trợ hoisting, còn let và const thì không.
+- let và var ta có thể gán giá trị lại, nhưng const thì không. Ta có thể gán lại thuộc tính của const nhưng không thể gán lại giá trị của nó
+
+**_Template Literals_**
+
+- Dùng để nối nhiều chuỗi string mà không cần dấu + , ta dùng dấu `` để bắt đầu một chuỗi template literals và dùng ${} để gán giá trị vào trong chuỗi.
+- Example:
+  ```Javascript
+     let subject = 'Toán'
+     let str = `Ngày mai có môn ${subject}`
+  ```
+
+**_Arrow Function_**
+
+```Javascript
+const logger = (log) => {
+  console.log(log);
+};
+
+logger("Hi");
+
+//Nếu như trong trường hợp không dùng return đối với object thì ta dùng dấu ngoặc đơn:
+const sum = (a, b) => ({a: a, b: b})
+console.log(sum(2, 2))
+```
+
+- Dùng để giúp chúng ta viết code ngắn gọn hơn.
+- Không có gắn với this.
+- Không thể dùng làm constructor function được
+
+**_Classes_**
+
+- Là cách viết khác của constructor function
+- Example:
