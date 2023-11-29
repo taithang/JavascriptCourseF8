@@ -492,15 +492,17 @@
 //       }
 //     });
 // }
-class Course {
-  constructor(name, price) {
-    this.name = name;
-    this.price = price;
-  }
-  getThisName() {
-    return this.name;
-  }
+function highlight([first, ...strings], ...values) {
+  return values
+    .reduce(
+      (acc, curr) => [...acc, `<span>${curr}</span>`, strings.shift()],
+      [first]
+    )
+    .join("");
 }
 
-const phpCoures = new Course("PHP", 1000);
-const javaCoures = new Course("Java", 1000);
+var brand = "F8";
+var course = "Javascript";
+const html = highlight`Học lập trình ${course} tại ${brand}!`;
+//Khi ta console.log html ban đầu khi chưa xử lý logic trong highlight function thì ta được thu được kết quả html bao gồm 1 array chứa mảng các chuỗi strings: ['Học lập trình ', ' tại '] và hai giá trị là course và brand
+console.log(html);

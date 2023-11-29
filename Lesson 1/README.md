@@ -648,3 +648,141 @@ class Course {
 const phpCoures = new Course("PHP", 1000);
 const javaCoures = new Course("Java", 1000);
 ```
+
+**_Default Parameter Value_**
+
+- Là giá trị mặc định được gán khi tạo hàm
+  Example:
+
+```Javascript
+function logger(log = "Giá trị mặc định") {
+  console.log(log);
+}
+
+logger();
+```
+
+**_Enhanced Object Literal_**
+
+- Định nghĩa key: value cho object
+- Định nghĩa method cho object
+- Định nghĩa key cho object dưới dạng biến
+  Example:
+
+```Javascript
+var name = "Javascript";
+var price = 1000;
+var course = {
+  name, //name : name
+  price, //price: price
+  getName() {
+    return name;
+  },
+};
+
+console.log(course);
+
+```
+
+**_Destructuring, Rest(...)_**
+
+- Destructuring là cách viết ngắn gọn để lấy ra các phần tử của một mảng và một object.
+- Rest có nghĩa là lấy những phần tử còn lại trong array và object.
+- Để thay đổi tên key trong object ta dùng dấu : phía sau tên key cần đổi và gán cho nó tên biến mới.
+  Example:
+
+```Javascript
+//Array destructuring
+var array = ["Java", "PHP", "Javascript"];
+var [a, b, c] = array;
+console.log(a, b, c);
+
+var [a, , c] = array;
+console.log(a, c);
+
+var [a, ...rest] = array;
+console.log(a, rest);
+
+//Object Destructuring
+var course = {
+  name: "Javascript",
+  price: 1000,
+  img: "image",
+  children: {
+    name: "Reactjs",
+  },
+};
+
+var { name, price, img } = course;
+console.log(name, price, img);
+
+var { name, ...rest } = course;
+console.log(name, rest);
+
+var {
+  name: parentName,
+  children: { name: childrenName },
+} = course;
+console.log(parentName, childrenName);
+
+```
+
+**_Spread(...)_**
+
+- Dùng để hợp nhất hai array hoặc hai object với nhau.
+  Example:
+
+```Javascript
+//Spread array
+var array1 = ["Love", "Hate", "Trust"];
+var array2 = ["Pain", "Suffer"];
+var array3 = [...array1, ...array2];
+console.log(array3);
+
+//Spread object
+var course1 = {
+  name: "PHP",
+  price: 1000,
+  api: "other",
+};
+
+var course2 = {
+  ...course1,
+  api: "difference",
+};
+
+console.log(course2); //api sẽ có giá trị là difference
+```
+
+**_Tagged template literals_**
+
+- Sử dụng một function và sử dụng function đó qua Tagged template literals
+  Example:
+
+```Javascript
+function highlight([first, ...strings], ...values) {
+  return values
+    .reduce(
+      (acc, curr) => [...acc, `<span>${curr}</span>`, strings.shift()],
+      [first]
+    )
+    .join("");
+}
+
+var brand = "F8";
+var course = "Javascript";
+const html = highlight`Học lập trình ${course} tại ${brand}!`;
+//Khi ta console.log html ban đầu khi chưa xử lý logic trong highlight function thì ta được thu được kết quả html bao gồm 1 array chứa mảng các chuỗi strings: ['Học lập trình ', ' tại '] và hai giá trị là course và brand
+console.log(html);
+```
+
+**_Modules_**
+
+- Khi chúng ta tách một thành phần ra xử lý riêng thì đó được gọi là một module
+- Chúng ta dùng export, import để đưa thành phần đó vào các thành phần khác để xử lý
+- Mỗi file chỉ có một export default mà thôi
+- Ta có thể dùng destructuring để export nhiều thành phần trong 1 file
+
+**_Optional chaining_**
+
+- ?. :dùng để coi thử key của object nó có giá trị hay không, nếu không có nó sẽ trả về undefined. Có thể dùng cho key của object hoặc array hoặc function.
