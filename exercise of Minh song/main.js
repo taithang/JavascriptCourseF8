@@ -65,27 +65,47 @@ let songs = [
 let songsList = document.querySelector(".songs-list");
 let audio = document.querySelector(".audio");
 let play = document.querySelector(".button");
-// Function to play a random song
+
+var playedSongs = [...songs];
 function playRandomSong() {
-  // Generate a random index
-  const randomIndex = Math.floor(Math.random() * songs.length);
-
-  // Set the audio source
-  audio.src = songs[randomIndex];
-
-  // Play the song
+  const randomIndex = Math.floor(Math.random() * playedSongs.length);
+  audio.src = playedSongs[randomIndex].path;
   audio.play();
+  playedSongs.splice(randomIndex, 1);
+  console.log(playedSongs);
 }
 
-// Function to play songs randomly and repeat
-function playAndRepeat() {
+play.onclick = function () {
+  if (playedSongs.length > 0) {
+    playRandomSong();
+  }
+  if (playedSongs.length === 0) {
+    playedSongs = [...songs];
+  }
+};
+
+audio.onended = function () {
   playRandomSong();
+};
 
-  audio.onended = function () {
-    // Repeat the process after each song
-    playAndRepeat();
-  };
-}
+// const indexArray = [];
+// const playedSongs = [...songs];
+// function playRandomSong() {
+//   let randomIndex = Math.floor(Math.random() * playedSongs.length);
+//   console.log("randomIndex:", randomIndex);
+//   if (!indexArray.includes(randomIndex)) {
+//     indexArray.push(randomIndex);
+//     audio.src = playedSongs[indexArray[indexArray.length - 1]].path;
+//     audio.play();
+//   } else {
+//     playRandomSong();
+//   }
+// }
 
-// Add click event listener to play button
-play.addEventListener("click", playAndRepeat);
+// play.onclick = function () {
+//   playRandomSong();
+// };
+
+// audio.ended = function () {
+//   playRandomSong();
+// };
