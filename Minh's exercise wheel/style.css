@@ -6,7 +6,7 @@ text {
 .form {
   position: absolute;
   right: 100px;
-  top: 520px;
+  top: 0px;
 }
 #chart {
   position: absolute;
