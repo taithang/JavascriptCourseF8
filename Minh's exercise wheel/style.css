@@ -16,6 +16,7 @@ text {
 }
 .background {
   text-align: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   /* margin: auto; */
@@ -28,6 +29,56 @@ text {
 .christmas {
   width: 20%;
   background-color: transparent;
+}
+
+.message {
+  border-radius: 10px;
+  width: 500px;
+  height: 200px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  font-style: italic;
+  background-color: #219465;
+  color: white;
+  padding: 40px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  animation-duration: 20s;
+  opacity: 0;
+  background-color: lightseagreen;
+  animation-name: rotating-text-1;
+}
+
+@keyframes rotating-text-1 {
+  0% {
+    transform: translateY(200%);
+  }
+  33% {
+    transform: translateY(-10%);
+    opacity: 1;
+  }
+  34% {
+    opacity: 0;
+  }
+}
+
+.hideMessage {
+  display: none;
+}
+.showMessage {
+  display: flex;
+}
+
+@keyframes showMessage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .form {
@@ -52,6 +103,7 @@ text {
 .title {
   font-size: 50px;
   text-align: center;
+  font-weight: bold;
 }
 
 .nameList {

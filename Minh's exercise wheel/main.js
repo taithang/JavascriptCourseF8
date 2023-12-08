@@ -4,6 +4,7 @@ let input = document.querySelector("#name");
 let remove = document.querySelector(".remove");
 let chart = document.querySelector("#chart");
 let audio = new Audio("./assets/music/mixkit-bike-wheel-spinning-1613.wav");
+let message = document.querySelector(".message");
 
 var padding = { top: 20, right: 40, bottom: 0, left: 0 },
   w = 500 - padding.left - padding.right,
@@ -178,10 +179,11 @@ function renderSpin() {
         console.log("data removing =====> ", data);
         console.log(data[picked].value);
         var removedIndex = picked;
-        data.splice(removedIndex, 1);
+        const removedItemArr = data.splice(removedIndex, 1);
         renderSpin();
         render();
         audio.pause();
+        winner(removedItemArr[0]);
 
         /* Comment the below line for restrict spin to single time */
         container.on("click", null);
@@ -292,5 +294,18 @@ function playMySong(url) {
   audio.loop = true;
   document.body.appendChild(audio);
 }
+document.querySelector("body").onload = playMySong(
+  "./assets/music/ASTN - Last Christmas (Official Visualizer).mp3"
+);
 
-playMySong("./assets/music/ASTN - Last Christmas (Official Visualizer).mp3");
+//show the winner when spin stop
+function winner(removedItem) {
+  message.innerText = `Congratulations ${removedItem.label}. You are the winner! 🎉🎉`;
+  message.classList.remove("hideMessage");
+  message.classList.add("showMessage");
+  setTimeout(() => {
+    message.innerText = "";
+    message.classList.remove("showMessage");
+    message.classList.add("hideMessage");
+  }, 8000);
+}
