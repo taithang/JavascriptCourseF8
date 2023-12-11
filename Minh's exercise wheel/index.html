@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Spin Wheel 🎉🎉</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,13 +14,23 @@
   </head>
   <body>
     <div class="background">
-      <div>
+      <!-- Snow flake -->
+      <div class="snow-container"></div>
+      <!-- congratulation -->
+      <div class="js-container container" style="top: 0px !important"></div>
+      <div class="img-title">
         <img src="./assets/img/download.png" alt="" class="christmas" />
         <img src="./assets/img/image.png" alt="" />
       </div>
       <div id="chart"></div>
       <div id="question"><h1></h1></div>
-      <div class="message hideMessage">Hello</div>
+      <div class="message hideMessage">
+        <audio
+          src="./assets/music/mixkit-conference-audience-clapping-strongly-476.wav"
+          style="display: none"
+          class="clap"
+        ></audio>
+      </div>
       <div class="form">
         <label for="name" class="title">Danh sách</label>
         <ul class="nameList"></ul>

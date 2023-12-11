@@ -4,6 +4,12 @@ body {
   height: 100%;
   font-family: "Exo 2", sans-serif;
   font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 text {
   font-family: "Exo 2", sans-serif;
@@ -19,18 +25,22 @@ text {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  /* margin: auto; */
-  background-image: url(./assets/img/https___vsememy_ru_kartinki_wp-content_uploads_2023_02_j0dmc-1.gif);
+  overflow-y: auto;
+  background-image: url(./assets/img/pic1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-  overflow: auto;
+  height: inherit;
+}
+.img-title {
+  margin-top: 20px;
 }
 .christmas {
   width: 20%;
   background-color: transparent;
 }
-
+#chart {
+  display: block;
+}
 .message {
   border-radius: 10px;
   width: 500px;
@@ -101,9 +111,12 @@ text {
 }
 
 .title {
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
   font-weight: bold;
+  background-color: #219465;
+  border-radius: 8px;
+  padding: 25px;
 }
 
 .nameList {
@@ -125,6 +138,9 @@ text {
 .nameList li h3 {
   font-size: 30px;
   margin-right: 10px;
+}
+.smallButton:hover {
+  opacity: 0.9;
 }
 
 .smallButton {
@@ -176,13 +192,10 @@ text {
   outline: none;
   border-radius: 15px;
   border: 1px solid #4c0300;
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25),
-    /* highlight */ inset 0 0 6px #a23227,
-    /* inner glow */ inset 0 80px 80px -40px #ac3223,
-    /* gradient */ 1px 1px 3px rgba(0, 0, 0, 0.75); /* shadow */
-
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), inset 0 0 6px #a23227,
+    inset 0 80px 80px -40px #ac3223, 1px 1px 3px rgba(0, 0, 0, 0.75);
   position: relative;
-  overflow: visible; /* IE9 & 10 */
+  overflow: visible;
   -webkit-transition: 500ms linear;
   -moz-transition: 500ms linear;
   -o-transition: 500ms linear;
@@ -208,22 +221,124 @@ text {
 .button:hover {
   background: #a61715;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 0 40px #fff;
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25),
-    /* highlight */ inset 0 0 6px #da3b2c,
-    /* inner glow */ inset 0 80px 80px -40px #dd4330,
-    /* gradient */ 1px 1px 3px rgba(0, 0, 0, 0.75); /* shadow */
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), inset 0 0 6px #da3b2c,
+    inset 0 80px 80px -40px #dd4330, 1px 1px 3px rgba(0, 0, 0, 0.75);
 }
 .button:focus {
-  outline: none; /*FF*/
+  outline: none;
 }
 .button:active {
-  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25),
-    /* highlight */ inset 0 0 6px #da3b2c,
-    /* inner glow */ inset 0 80px 80px -40px #dd4330,
-    /* gradient */ 0px 1px 0px rgba(255, 255, 255, 0.25); /* shadow */
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25), inset 0 0 6px #da3b2c,
+    inset 0 80px 80px -40px #dd4330, 0px 1px 0px rgba(255, 255, 255, 0.25);
 
   -webkit-transition: 50ms linear;
   -moz-transition: 50ms linear;
   -o-transition: 50ms linear;
   transition: 50ms linear;
+}
+
+/* Animation snow flake */
+.snow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.snowflake {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes diagonal-fall {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.25;
+    transform: translate(10vw, 100vh);
+  }
+}
+
+/* Congratulations  */
+
+@keyframes confetti-slow {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: translate3d(25px, 105vh, 0) rotateX(360deg) rotateY(180deg);
+  }
+}
+@keyframes confetti-medium {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: translate3d(100px, 105vh, 0) rotateX(100deg) rotateY(360deg);
+  }
+}
+@keyframes confetti-fast {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: translate3d(-50px, 105vh, 0) rotateX(10deg) rotateY(250deg);
+  }
+}
+.container {
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  top: 0;
+}
+.confetti-container {
+  perspective: 700px;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.confetti {
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  border-radius: 0%;
+}
+.confetti--animation-slow {
+  animation: confetti-slow 2.25s linear 1 forwards;
+}
+.confetti--animation-medium {
+  animation: confetti-medium 1.75s linear 1 forwards;
+}
+.confetti--animation-fast {
+  animation: confetti-fast 1.25s linear 1 forwards;
 }
