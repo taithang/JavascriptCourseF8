@@ -5,6 +5,8 @@ let remove = document.querySelector(".remove");
 let chart = document.querySelector("#chart");
 let audio = new Audio("./assets/music/mixkit-bike-wheel-spinning-1613.wav");
 let message = document.querySelector(".message");
+let congratulations = document.querySelector(".container");
+let clap = document.querySelector(".clap");
 
 var padding = { top: 20, right: 40, bottom: 0, left: 0 },
   w = 500 - padding.left - padding.right,
@@ -136,11 +138,13 @@ function renderSpin() {
       return data[i].label;
     });
   container.on("click", spin);
+
   function spin(d) {
     container.on("click", null);
     audio.play();
     //all slices have been seen, all done
     console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
+
     // if (oldpick.length == data.length) {
     //   console.log("done");
     //   container.on("click", null);
@@ -190,35 +194,39 @@ function renderSpin() {
       });
   }
 
-  //make arrow
-  svg
-    .append("g")
-    .attr(
-      "transform",
-      "translate(" +
-        (w + padding.left + padding.right) +
-        "," +
-        (h / 2 + padding.top) +
-        ")"
-    )
-    .append("path")
-    .attr("d", "M-" + r * 0.15 + ",0L0," + r * 0.05 + "L0,-" + r * 0.05 + "Z")
-    .style({ fill: "black" });
-  //draw spin circle
-  container
-    .append("circle")
-    .attr("cx", 0)
-    .attr("cy", 0)
-    .attr("r", 60)
-    .style({ fill: "white", cursor: "pointer" });
-  //spin text
-  container
-    .append("text")
-    .attr("x", 0)
-    .attr("y", 15)
-    .attr("text-anchor", "middle")
-    .text("SPIN")
-    .style({ "font-weight": "bold", "font-size": "30px" });
+  if (data.length > 0) {
+    //make arrow
+    svg
+      .append("g")
+      .attr(
+        "transform",
+        "translate(" +
+          (w + padding.left + padding.right) +
+          "," +
+          (h / 2 + padding.top) +
+          ")"
+      )
+      .append("path")
+      .attr("d", "M-" + r * 0.15 + ",0L0," + r * 0.05 + "L0,-" + r * 0.05 + "Z")
+      .style({ fill: "black" });
+    //draw spin circle
+    container
+      .append("circle")
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .attr("r", 60)
+      .style({ fill: "white", cursor: "pointer" });
+    //spin text
+    container
+      .append("text")
+      .attr("x", 0)
+      .attr("y", 15)
+      .attr("text-anchor", "middle")
+      .text("SPIN")
+      .style({ "font-weight": "bold", "font-size": "30px" });
+  } else {
+    d3.select("#chart svg").remove();
+  }
 }
 
 function rotTween(to) {
@@ -294,18 +302,178 @@ function playMySong(url) {
   audio.loop = true;
   document.body.appendChild(audio);
 }
-document.querySelector("body").onload = playMySong(
-  "./assets/music/ASTN - Last Christmas (Official Visualizer).mp3"
+document.addEventListener(
+  "DOMContentLoaded",
+  playMySong("./assets/music/ASTN - Last Christmas (Official Visualizer).mp3")
 );
 
 //show the winner when spin stop
 function winner(removedItem) {
+  clap.play();
   message.innerText = `Congratulations ${removedItem.label}. You are the winner! 🎉🎉`;
   message.classList.remove("hideMessage");
   message.classList.add("showMessage");
+  congratulations.style.display = "block";
+  chart.style.display = "none";
   setTimeout(() => {
+    chart.style.display = "block";
+    congratulations.style.display = "none";
     message.innerText = "";
     message.classList.remove("showMessage");
     message.classList.add("hideMessage");
-  }, 8000);
+  }, 7000);
 }
+
+//Animation snow flakes
+document.addEventListener("DOMContentLoaded", function () {
+  const snowContainer = document.querySelector(".snow-container");
+
+  const particlesPerThousandPixels = 0.1;
+  const fallSpeed = 1.25;
+  const pauseWhenNotActive = true;
+  const maxSnowflakes = 200;
+  const snowflakes = [];
+
+  let snowflakeInterval;
+  let isTabActive = true;
+
+  function resetSnowflake(snowflake) {
+    const size = Math.random() * 5 + 1;
+    const viewportWidth = window.innerWidth - size; // Adjust for snowflake size
+    const viewportHeight = window.innerHeight;
+
+    snowflake.style.width = `${size}px`;
+    snowflake.style.height = `${size}px`;
+    snowflake.style.left = `${Math.random() * viewportWidth}px`; // Constrain within viewport width
+    snowflake.style.top = `-${size}px`;
+
+    const animationDuration = (Math.random() * 3 + 2) / fallSpeed;
+    snowflake.style.animationDuration = `${animationDuration}s`;
+    snowflake.style.animationTimingFunction = "linear";
+    snowflake.style.animationName =
+      Math.random() < 0.5 ? "fall" : "diagonal-fall";
+
+    setTimeout(() => {
+      if (parseInt(snowflake.style.top, 10) < viewportHeight) {
+        resetSnowflake(snowflake);
+      } else {
+        snowflake.remove(); // Remove when it goes off the bottom edge
+      }
+    }, animationDuration * 1000);
+  }
+
+  function createSnowflake() {
+    if (snowflakes.length < maxSnowflakes) {
+      const snowflake = document.createElement("div");
+      snowflake.classList.add("snowflake");
+      snowflakes.push(snowflake);
+      snowContainer.appendChild(snowflake);
+      resetSnowflake(snowflake);
+    }
+  }
+
+  function generateSnowflakes() {
+    const numberOfParticles =
+      Math.ceil((window.innerWidth * window.innerHeight) / 1000) *
+      particlesPerThousandPixels;
+    const interval = 5000 / numberOfParticles;
+
+    clearInterval(snowflakeInterval);
+    snowflakeInterval = setInterval(() => {
+      if (isTabActive && snowflakes.length < maxSnowflakes) {
+        requestAnimationFrame(createSnowflake);
+      }
+    }, interval);
+  }
+
+  function handleVisibilityChange() {
+    if (!pauseWhenNotActive) return;
+
+    isTabActive = !document.hidden;
+    if (isTabActive) {
+      generateSnowflakes();
+    } else {
+      clearInterval(snowflakeInterval);
+    }
+  }
+
+  generateSnowflakes();
+
+  window.addEventListener("resize", () => {
+    clearInterval(snowflakeInterval);
+    setTimeout(generateSnowflakes, 1000);
+  });
+
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+});
+
+// Animation congratulations
+function showCongratulation() {
+  const Confettiful = function (el) {
+    this.el = el;
+    this.containerEl = null;
+
+    this.confettiFrequency = 3;
+    this.confettiColors = [
+      "#EF2964",
+      "#00C09D",
+      "#2D87B0",
+      "#48485E",
+      "#EFFF1D",
+    ];
+    this.confettiAnimations = ["slow", "medium", "fast"];
+
+    this._setupElements();
+    this._renderConfetti();
+  };
+
+  Confettiful.prototype._setupElements = function () {
+    const containerEl = document.createElement("div");
+    const elPosition = this.el.style.position;
+
+    if (elPosition !== "relative" || elPosition !== "absolute") {
+      this.el.style.position = "relative";
+    }
+
+    containerEl.classList.add("confetti-container");
+
+    this.el.appendChild(containerEl);
+
+    this.containerEl = containerEl;
+  };
+
+  Confettiful.prototype._renderConfetti = function () {
+    this.confettiInterval = setInterval(() => {
+      const confettiEl = document.createElement("div");
+      const confettiSize = Math.floor(Math.random() * 3) + 7 + "px";
+      const confettiBackground =
+        this.confettiColors[
+          Math.floor(Math.random() * this.confettiColors.length)
+        ];
+      const confettiLeft =
+        Math.floor(Math.random() * this.el.offsetWidth) + "px";
+      const confettiAnimation =
+        this.confettiAnimations[
+          Math.floor(Math.random() * this.confettiAnimations.length)
+        ];
+
+      confettiEl.classList.add(
+        "confetti",
+        "confetti--animation-" + confettiAnimation
+      );
+      confettiEl.style.left = confettiLeft;
+      confettiEl.style.width = confettiSize;
+      confettiEl.style.height = confettiSize;
+      confettiEl.style.backgroundColor = confettiBackground;
+
+      confettiEl.removeTimeout = setTimeout(function () {
+        confettiEl.parentNode.removeChild(confettiEl);
+      }, 3000);
+
+      this.containerEl.appendChild(confettiEl);
+    }, 25);
+  };
+
+  window.confettiful = new Confettiful(document.querySelector(".js-container"));
+}
+showCongratulation();
