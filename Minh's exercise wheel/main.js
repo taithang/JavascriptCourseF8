@@ -8,6 +8,7 @@ let message = document.querySelector(".message");
 let congratulations = document.querySelector(".container");
 let clap = document.querySelector(".clap");
 
+document.querySelector(".background").scrollIntoView();
 var padding = { top: 20, right: 40, bottom: 0, left: 0 },
   w = 500 - padding.left - padding.right,
   h = 500 - padding.top - padding.bottom,
@@ -134,6 +135,7 @@ function renderSpin() {
       );
     })
     .attr("text-anchor", "end")
+    .style({ "font-size": "20px" })
     .text(function (d, i) {
       return data[i].label;
     });
@@ -294,18 +296,18 @@ function removeName(i) {
   renderSpin();
 }
 //Play background song infinitely
-function playMySong(url) {
-  let audio = document.createElement("audio");
-  audio.style.display = "none";
-  audio.src = url;
-  audio.autoplay = true;
-  audio.loop = true;
-  document.body.appendChild(audio);
-}
-document.addEventListener(
-  "DOMContentLoaded",
-  playMySong("./assets/music/ASTN - Last Christmas (Official Visualizer).mp3")
-);
+// function playMySong(url) {
+//   let audio = document.createElement("audio");
+//   audio.style.display = "none";
+//   audio.src = url;
+//   audio.autoplay = true;
+//   audio.loop = true;
+//   document.body.appendChild(audio);
+// }
+// document.addEventListener(
+//   "DOMContentLoaded",
+//   playMySong("./assets/music/ASTN - Last Christmas (Official Visualizer).mp3")
+// );
 
 //show the winner when spin stop
 function winner(removedItem) {
@@ -314,9 +316,9 @@ function winner(removedItem) {
   message.classList.remove("hideMessage");
   message.classList.add("showMessage");
   congratulations.style.display = "block";
-  chart.style.display = "none";
+  // chart.style.display = "none";
   setTimeout(() => {
-    chart.style.display = "block";
+    // chart.style.display = "block";
     congratulations.style.display = "none";
     message.innerText = "";
     message.classList.remove("showMessage");

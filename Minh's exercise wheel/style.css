@@ -6,11 +6,11 @@ body {
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  overflow: auto;
+  /* overflow: auto; */
 }
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
   display: none;
-}
+} */
 text {
   font-family: "Exo 2", sans-serif;
   font-family: "Roboto", sans-serif;
@@ -18,28 +18,30 @@ text {
   pointer-events: none;
 }
 .slice {
-  font-size: 30px;
+  font-size: 70px;
 }
 .background {
   text-align: center;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  background-image: url(./assets/img/pic1.jpg);
+  overflow: auto;
+  background: url(./assets/img/pic1.jpg);
+  /* background: url(https://healthchoicesplans.com/wp-content/uploads/2017/08/light.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
-  height: inherit;
+  height: 100vh;
 }
 .img-title {
-  margin-top: 20px;
+  margin-top: 150px;
 }
 .christmas {
   width: 20%;
   background-color: transparent;
 }
 #chart {
-  display: block;
+  z-index: 1;
 }
 .message {
   border-radius: 10px;
@@ -82,13 +84,13 @@ text {
   display: flex;
 }
 
-@keyframes showMessage {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.title {
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #219465;
+  border-radius: 8px;
+  padding: 25px;
 }
 
 .form {
@@ -100,6 +102,7 @@ text {
   margin: auto;
   color: white;
   width: 100%;
+  z-index: 1;
 }
 .form #name {
   border: solid black 1px;
@@ -108,15 +111,6 @@ text {
   width: 300px;
   margin-bottom: 20px;
   font-size: 20px;
-}
-
-.title {
-  font-size: 40px;
-  text-align: center;
-  font-weight: bold;
-  background-color: #219465;
-  border-radius: 8px;
-  padding: 25px;
 }
 
 .nameList {
@@ -245,7 +239,6 @@ text {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  z-index: 5;
   pointer-events: none;
 }
 
@@ -312,15 +305,15 @@ text {
   }
 }
 .container {
-  z-index: 5;
+  z-index: 6;
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   display: none;
   top: 0;
 }
 .confetti-container {
   perspective: 700px;
-  position: absolute;
+  position: fixed;
   overflow: hidden;
   top: 0;
   right: 0;
@@ -341,4 +334,136 @@ text {
 }
 .confetti--animation-fast {
   animation: confetti-fast 1.25s linear 1 forwards;
+}
+
+/* lights */
+#Christmas_Lights {
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.light_cord {
+  fill: none;
+  stroke: #174700;
+}
+
+.light_fixture {
+  fill: #134413;
+}
+
+.red_bulb {
+  fill: #ca2128;
+  stroke: #6d6d6d;
+  stroke-miterlimit: 10;
+}
+
+.green_bulb {
+  fill: #2d754a;
+  stroke: #6d6d6d;
+  stroke-miterlimit: 10;
+}
+
+.blue_bulb {
+  fill: #2c3ea8;
+  stroke: #6d6d6d;
+  stroke-miterlimit: 10;
+}
+
+.white_bulb {
+  fill: #f5eed7;
+  stroke: #6d6d6d;
+  stroke-miterlimit: 10;
+}
+
+.gold_bulb {
+  fill: #ffcc5e;
+  stroke: #6d6d6d;
+  stroke-miterlimit: 10;
+}
+
+/* Simply changing the opacity of the SVG fill to create the glow effect for the bulbs */
+
+.bulb {
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-name: glow;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-direction: alternate;
+  animation-name: glow;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@-webkit-keyframes glow {
+  0% {
+    fill-opacity: 0.25;
+  }
+  100% {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0% {
+    fill-opacity: 0.25;
+  }
+  100% {
+    fill-opacity: 1;
+  }
+}
+
+/* Made a set of ten animation delays to create a more random effect of lights blinking.  Simplest way without jumping through SVG hoops. */
+
+.blink-1 {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.blink-2 {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+.blink-3 {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+.blink-4 {
+  -webkit-animation-delay: 6s;
+  animation-delay: 6s;
+}
+
+.blink-5 {
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s;
+}
+
+.blink-6 {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.blink-7 {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+.blink-8 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.blink-9 {
+  -webkit-animation-delay: 0.95s;
+  animation-delay: 0.95s;
+}
+
+.blink-10 {
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
 }
