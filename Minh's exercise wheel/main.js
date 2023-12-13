@@ -1,4 +1,5 @@
-let button = document.querySelector(".button");
+let create = document.querySelector(".create");
+let reset = document.querySelector(".reset");
 let nameList = document.querySelector(".nameList");
 let input = document.querySelector("#name");
 let remove = document.querySelector(".remove");
@@ -135,10 +136,13 @@ function renderSpin() {
       );
     })
     .attr("text-anchor", "end")
-    .style({ "font-size": "20px" })
+    .style({
+      "font-size": "15px",
+    })
     .text(function (d, i) {
       return data[i].label;
     });
+  console.log(container);
   container.on("click", spin);
 
   function spin(d) {
@@ -269,18 +273,28 @@ function render() {
 }
 
 //Click event on 'Nhập' button
-button.onclick = function () {
+create.onclick = function () {
   let text = input.value;
-  data.push({ label: text, value: data.length + 1 });
-  render();
-  console.log(data);
-  renderSpin();
-  input.value = "";
+  if (text !== "") {
+    data.push({ label: text, value: data.length + 1 });
+    render();
+    console.log(data);
+    renderSpin();
+    input.value = "";
+  }
 };
 
+//Click event on 'reset' button
+reset.onclick = function () {
+  data = [];
+  render();
+  renderSpin();
+};
+
+//nhập tên xong bấm enter
 input.onkeydown = function (event) {
-  if (event.key === "Enter") {
-    let text = input.value;
+  let text = input.value;
+  if (event.key === "Enter" && text !== "") {
     data.push({ label: text, value: data.length + 1 });
     render();
     console.log(data);
@@ -323,7 +337,7 @@ function winner(removedItem) {
     message.innerText = "";
     message.classList.remove("showMessage");
     message.classList.add("hideMessage");
-  }, 7000);
+  }, 4000);
 }
 
 //Animation snow flakes
