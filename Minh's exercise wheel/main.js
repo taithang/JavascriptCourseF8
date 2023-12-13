@@ -8,6 +8,7 @@ let audio = new Audio("./assets/music/mixkit-bike-wheel-spinning-1613.wav");
 let message = document.querySelector(".message");
 let congratulations = document.querySelector(".container");
 let clap = document.querySelector(".clap");
+let form = document.querySelector(".form");
 
 document.querySelector(".background").scrollIntoView();
 var padding = { top: 20, right: 40, bottom: 0, left: 0 },
@@ -137,13 +138,14 @@ function renderSpin() {
     })
     .attr("text-anchor", "end")
     .style({
-      "font-size": "15px",
+      "font-size": "20px",
+      "font-weight": "bold",
     })
     .text(function (d, i) {
       return data[i].label;
     });
   console.log(container);
-  container.on("click", spin);
+  // container.on("click", spin);
 
   function spin(d) {
     container.on("click", null);
@@ -230,6 +232,7 @@ function renderSpin() {
       .attr("text-anchor", "middle")
       .text("SPIN")
       .style({ "font-weight": "bold", "font-size": "30px" });
+    container.select("circle").on("click", spin);
   } else {
     d3.select("#chart svg").remove();
   }
@@ -339,6 +342,18 @@ function winner(removedItem) {
     message.classList.add("hideMessage");
   }, 4000);
 }
+
+//show list content when click on List button
+let showList = document.querySelector(".showList");
+let showListItem = false;
+showList.onclick = function () {
+  showListItem = !showListItem;
+  if (!showListItem) {
+    form.style.display = "none";
+  } else {
+    form.style.display = "flex";
+  }
+};
 
 //Animation snow flakes
 document.addEventListener("DOMContentLoaded", function () {
