@@ -349,8 +349,10 @@ let showListItem = false;
 showList.onclick = function () {
   showListItem = !showListItem;
   if (!showListItem) {
-    form.style.display = "none";
+    form.style.animationName = "rotating-text-3 ";
+    setTimeout(() => (form.style.display = "none"), 2000);
   } else {
+    form.style.animationName = "rotating-text-2 ";
     form.style.display = "flex";
   }
 };
