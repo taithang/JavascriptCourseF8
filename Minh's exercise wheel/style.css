@@ -134,6 +134,15 @@ text {
     opacity: 1;
   }
 }
+@keyframes rotating-text-3 {
+  0% {
+    transform: translateX(0%);
+  }
+  33% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
 
 .hideMessage {
   display: none;
@@ -158,7 +167,7 @@ text {
   top: 10%;
   overflow: auto;
   animation-duration: 8s;
-  animation-name: rotating-text-2;
+  animation-name: rotating-text-3;
 }
 
 .title {
