@@ -9,6 +9,8 @@ let message = document.querySelector(".message");
 let congratulations = document.querySelector(".container");
 let clap = document.querySelector(".clap");
 let form = document.querySelector(".form");
+let cover = document.querySelector(".cover");
+let toggleCover = false;
 
 document.querySelector(".background").scrollIntoView();
 var padding = { top: 20, right: 40, bottom: 0, left: 0 },
@@ -150,6 +152,7 @@ function renderSpin() {
   function spin(d) {
     container.on("click", null);
     audio.play();
+    showCover();
     //all slices have been seen, all done
     console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
 
@@ -333,7 +336,6 @@ function winner(removedItem) {
   message.classList.remove("hideMessage");
   message.classList.add("showMessage");
   congratulations.style.display = "block";
-  // chart.style.display = "none";
   setTimeout(() => {
     // chart.style.display = "block";
     congratulations.style.display = "none";
@@ -356,6 +358,19 @@ showList.onclick = function () {
     form.style.display = "flex";
   }
 };
+
+//function of clicking Spin text and cant click anywhere else
+function showCover() {
+  toggleCover = !toggleCover;
+  if (toggleCover) {
+    cover.style.display = "inline-block";
+  }
+  setTimeout(() => {
+    toggleCover = false;
+    cover.style.display = "none";
+  }, 7000);
+  console.log(toggleCover);
+}
 
 //Animation snow flakes
 document.addEventListener("DOMContentLoaded", function () {
