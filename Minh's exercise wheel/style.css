@@ -928,6 +928,7 @@ input#open {
   width: 30px;
   height: 3px;
   top: 14px;
+  left: 0;
 }
 
 .gift:after {
@@ -954,6 +955,7 @@ input#open {
 .bow:before {
   transform: skew(20deg, 10deg);
   left: 2px;
+  /* left: 10px; */
 }
 
 .bow:after {
