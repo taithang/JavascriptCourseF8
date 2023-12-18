@@ -10,7 +10,10 @@ let congratulations = document.querySelector(".container");
 let clap = document.querySelector(".clap");
 let form = document.querySelector(".form");
 let cover = document.querySelector(".cover");
+let backgroundMusic = document.querySelector(".backgroundMusic");
+let soundToggle = document.querySelector(".soundToggle");
 let toggleCover = false;
+let toggleSound = false;
 
 document.querySelector(".background").scrollIntoView();
 var padding = { top: 20, right: 40, bottom: 0, left: 0 },
@@ -350,12 +353,14 @@ let showList = document.querySelector(".showList");
 let showListItem = false;
 showList.onclick = function () {
   showListItem = !showListItem;
-  if (!showListItem) {
-    form.style.animationName = "rotating-text-3 ";
-    setTimeout(() => (form.style.display = "none"), 2000);
+  if (showListItem) {
+    // form.style.transition = "rotating-text-3 ";
+    // form.style.display = "none";
+    form.classList.add("showForm");
   } else {
-    form.style.animationName = "rotating-text-2 ";
-    form.style.display = "flex";
+    form.classList.remove("showForm");
+    // form.style.transition = "rotating-text-2 ";
+    // form.style.display = "flex";
   }
 };
 
@@ -372,6 +377,20 @@ function showCover() {
   console.log(toggleCover);
 }
 
+//Turn music on and off
+soundToggle.onclick = function () {
+  toggleSound = !toggleSound;
+  if (toggleSound) {
+    soundToggle.innerHTML = "";
+    soundToggle.innerHTML = `<i class="fa-solid fa-volume-xmark"></i>`;
+    backgroundMusic.play();
+  } else {
+    soundToggle.innerHTML = "";
+    soundToggle.innerHTML = `<i class="fa-solid fa-volume-high"></i>`;
+    backgroundMusic.pause();
+  }
+  console.log(toggleSound);
+};
 //Animation snow flakes
 document.addEventListener("DOMContentLoaded", function () {
   const snowContainer = document.querySelector(".snow-container");
