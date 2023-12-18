@@ -198,10 +198,10 @@ function renderSpin() {
         console.log(data[picked].value);
         var removedIndex = picked;
         const removedItemArr = data.splice(removedIndex, 1);
+        winner(removedItemArr[0]);
         renderSpin();
         render();
         audio.pause();
-        winner(removedItemArr[0]);
 
         /* Comment the below line for restrict spin to single time */
         container.on("click", null);
@@ -335,17 +335,42 @@ function removeName(i) {
 //show the winner when spin stop
 function winner(removedItem) {
   clap.play();
-  message.innerText = `Congratulations ${removedItem.label}. You are the winner! 🎉🎉`;
+  // message.innerText = `Congratulations ${removedItem.label}. You are the winner! 🎉🎉`;
+  message.innerHTML = `<p>Congratulations ${removedItem.label}. You are the winner! 🎉🎉</p>
+  <div class = 'messageBtn'>
+    <button class = 'ok'>OK</button>
+    <button class = 'cancel'>CANCEL</button>
+  </div>
+  `;
   message.classList.remove("hideMessage");
   message.classList.add("showMessage");
   congratulations.style.display = "block";
-  setTimeout(() => {
-    // chart.style.display = "block";
-    congratulations.style.display = "none";
-    message.innerText = "";
+
+  let ok = document.querySelector(".ok");
+  let cancel = document.querySelector(".cancel");
+
+  //Turn off message when click ok
+  ok.onclick = function () {
     message.classList.remove("showMessage");
     message.classList.add("hideMessage");
-  }, 4000);
+    congratulations.style.display = "none";
+  };
+
+  //Turn off message when click cancel
+  cancel.onclick = function () {
+    message.classList.remove("showMessage");
+    message.classList.add("hideMessage");
+    data.push(removedItem);
+    renderSpin();
+    render();
+  };
+  // setTimeout(() => {
+  //   // chart.style.display = "block";
+  //   congratulations.style.display = "none";
+  //   message.innerText = "";
+  //   message.classList.remove("showMessage");
+  //   message.classList.add("hideMessage");
+  // }, 4000);
 }
 
 //show list content when click on List button
