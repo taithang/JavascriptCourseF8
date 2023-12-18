@@ -198,9 +198,7 @@ function renderSpin() {
         console.log(data[picked].value);
         var removedIndex = picked;
         const removedItemArr = data.splice(removedIndex, 1);
-        winner(removedItemArr[0]);
-        renderSpin();
-        render();
+        winner(removedItemArr[0], removedIndex);
         audio.pause();
 
         /* Comment the below line for restrict spin to single time */
@@ -318,22 +316,9 @@ function removeName(i) {
   render();
   renderSpin();
 }
-//Play background song infinitely
-// function playMySong(url) {
-//   let audio = document.createElement("audio");
-//   audio.style.display = "none";
-//   audio.src = url;
-//   audio.autoplay = true;
-//   audio.loop = true;
-//   document.body.appendChild(audio);
-// }
-// document.addEventListener(
-//   "DOMContentLoaded",
-//   playMySong("./assets/music/ASTN - Last Christmas (Official Visualizer).mp3")
-// );
 
 //show the winner when spin stop
-function winner(removedItem) {
+function winner(removedItem, index) {
   clap.play();
   // message.innerText = `Congratulations ${removedItem.label}. You are the winner! 🎉🎉`;
   message.innerHTML = `<p>Congratulations ${removedItem.label}. You are the winner! 🎉🎉</p>
@@ -351,18 +336,25 @@ function winner(removedItem) {
 
   //Turn off message when click ok
   ok.onclick = function () {
+    toggleCover = false;
+    cover.style.display = "none";
     message.classList.remove("showMessage");
     message.classList.add("hideMessage");
+    renderSpin();
+    render();
     congratulations.style.display = "none";
   };
 
   //Turn off message when click cancel
   cancel.onclick = function () {
+    toggleCover = false;
+    cover.style.display = "none";
     message.classList.remove("showMessage");
     message.classList.add("hideMessage");
-    data.push(removedItem);
+    data.splice(index, 0, removedItem);
     renderSpin();
     render();
+    congratulations.style.display = "none";
   };
   // setTimeout(() => {
   //   // chart.style.display = "block";
@@ -395,11 +387,10 @@ function showCover() {
   if (toggleCover) {
     cover.style.display = "inline-block";
   }
-  setTimeout(() => {
-    toggleCover = false;
-    cover.style.display = "none";
-  }, 7000);
-  console.log(toggleCover);
+  // setTimeout(() => {
+  //   toggleCover = false;
+  //   cover.style.display = "none";
+  // }, 7000);
 }
 
 //Turn music on and off

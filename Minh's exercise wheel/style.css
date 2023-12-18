@@ -28,14 +28,13 @@ text {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   background: url(./assets/img/77218-DecorationChristmas-4k-Ultra-HD-Wallpaper.jpg);
-  /* background: url(https://healthchoicesplans.com/wp-content/uploads/2017/08/light.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
   width: 100vw;
-  /* z-index: 2; */
+  z-index: 1;
   gap: 50px;
   position: relative;
   overflow-x: hidden;
@@ -239,11 +238,11 @@ text {
   top: 10%;
   /* animation-duration: 8s;
   animation-name: rotating-text-3; */
-  transition: transform linear 3s;
+  transition: transform linear 1s;
 }
 
 .showForm {
-  transform: translateX(800%);
+  transform: translateX(100%);
 }
 
 .title {
