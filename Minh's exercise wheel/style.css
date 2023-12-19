@@ -167,25 +167,35 @@ text {
   background-color: lightseagreen;
   animation-duration: 12s;
   opacity: 1;
-  animation-name: rotating-text-1;
+  /* animation-name: rotating-text-1; */
+  animation-name: fadeOut;
   z-index: 1;
   position: absolute;
   top: 40%;
   left: 35%;
 }
-
+/* 
 @keyframes rotating-text-1 {
   0% {
     transform: translateY(200%);
   }
   33% {
-    transform: translateY(0%);
-    /* transform: translateY(-200%); */
-    opacity: 1;
-  }
-  /* 34% {
+    transform: translateY(0%); */
+/* transform: translateY(-200%); */
+/* opacity: 1;
+  } */
+/* 34% {
     opacity: 0;
   } */
+/* } */
+
+@keyframes fadeOut {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes rotating-text-2 {
   0% {
