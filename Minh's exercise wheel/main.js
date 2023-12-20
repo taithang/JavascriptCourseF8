@@ -432,12 +432,11 @@ function playRandomSong() {
   if (songsArr.length === 0) {
     songsArr = songs;
   }
-  console.log(songsArr);
-
   let randomIndexSong = Math.floor(Math.random() * songsArr.length);
   backgroundMusic.src = songsArr[randomIndexSong].path;
   backgroundMusic.play();
   songsArr.splice(randomIndexSong, 1);
+  console.log(songsArr);
 }
 
 //Turn music on and off
