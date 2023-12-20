@@ -14,6 +14,40 @@ let backgroundMusic = document.querySelector(".backgroundMusic");
 let soundToggle = document.querySelector(".soundToggle");
 let toggleCover = false;
 let toggleSound = false;
+let currentTime = 0;
+
+let songs = [
+  {
+    path: "./assets/music/[Official Video] Little Drummer Boy - Pentatonix.mp3",
+  },
+  {
+    path: "./assets/music/ASTN - Last Christmas (Official Visualizer).mp3",
+  },
+  {
+    path: "./assets/music/BABY, IT'S COLD OUTSIDE - MICHAEL BUBLÉ , IDINA MENZEL DUET LYRICS.mp3",
+  },
+  {
+    path: "./assets/music/Ed Sheeran & Elton John - Merry Christmas [Official Video].mp3",
+  },
+  {
+    path: "./assets/music/Justin Bieber - Mistletoe (Official Music Video).mp3",
+  },
+  {
+    path: "./assets/music/Justin Bieber - Only Thing I Ever Get For Christmas (Audio).mp3",
+  },
+  {
+    path: "./assets/music/Kelly Clarkson - Underneath the Tree (Official Audio).mp3",
+  },
+  {
+    path: "./assets/music/Mariah Carey - All I Want for Christmas Is You (Make My Wish Come True Edition).mp3",
+  },
+  {
+    path: "./assets/music/Matthew Ifield - Holly Jolly Christmas.mp3",
+  },
+  {
+    path: "./assets/music/Michael Bublé - It's Beginning To Look A Lot Like Christmas [Official HD Audio].mp3",
+  },
+];
 
 document.querySelector(".background").scrollIntoView();
 var padding = { top: 20, right: 40, bottom: 0, left: 0 },
@@ -393,13 +427,31 @@ function showCover() {
   // }, 7000);
 }
 
+//Function random song
+function playRandomSong() {
+  if (songsArr.length === 0) {
+    songsArr = songs;
+  }
+  console.log(songsArr);
+
+  let randomIndexSong = Math.floor(Math.random() * songsArr.length);
+  backgroundMusic.src = songsArr[randomIndexSong].path;
+  backgroundMusic.play();
+  songsArr.splice(randomIndexSong, 1);
+}
+
 //Turn music on and off
+let songsArr = [...songs];
 soundToggle.onclick = function () {
   toggleSound = !toggleSound;
   if (toggleSound) {
     soundToggle.innerHTML = "";
     soundToggle.innerHTML = `<i class="fa-solid fa-volume-xmark"></i>`;
-    backgroundMusic.play();
+    playRandomSong();
+    backgroundMusic.onended = function () {
+      playRandomSong();
+      console.log(songsArr);
+    };
   } else {
     soundToggle.innerHTML = "";
     soundToggle.innerHTML = `<i class="fa-solid fa-volume-high"></i>`;
