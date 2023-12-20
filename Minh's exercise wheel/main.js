@@ -332,7 +332,7 @@ reset.onclick = function () {
   renderSpin();
 };
 
-//nhập tên xong bấm enter
+//Use 'Enter' keyboard to create name
 input.onkeydown = function (event) {
   let text = input.value;
   if (event.key === "Enter" && text !== "") {
@@ -354,7 +354,6 @@ function removeName(i) {
 //show the winner when spin stop
 function winner(removedItem, index) {
   clap.play();
-  // message.innerText = `Congratulations ${removedItem.label}. You are the winner! 🎉🎉`;
   message.innerHTML = `<p>Congratulations ${removedItem.label}. You are the winner! 🎉🎉</p>
   <div class = 'messageBtn'>
     <button class = 'ok'>OK</button>
@@ -390,13 +389,6 @@ function winner(removedItem, index) {
     render();
     congratulations.style.display = "none";
   };
-  // setTimeout(() => {
-  //   // chart.style.display = "block";
-  //   congratulations.style.display = "none";
-  //   message.innerText = "";
-  //   message.classList.remove("showMessage");
-  //   message.classList.add("hideMessage");
-  // }, 4000);
 }
 
 //show list content when click on List button
@@ -405,13 +397,9 @@ let showListItem = false;
 showList.onclick = function () {
   showListItem = !showListItem;
   if (showListItem) {
-    // form.style.transition = "rotating-text-3 ";
-    // form.style.display = "none";
     form.classList.add("showForm");
   } else {
     form.classList.remove("showForm");
-    // form.style.transition = "rotating-text-2 ";
-    // form.style.display = "flex";
   }
 };
 
@@ -421,43 +409,41 @@ function showCover() {
   if (toggleCover) {
     cover.style.display = "inline-block";
   }
-  // setTimeout(() => {
-  //   toggleCover = false;
-  //   cover.style.display = "none";
-  // }, 7000);
 }
 
 //Function random song
+let songsArr = [...songs];
 function playRandomSong() {
   if (songsArr.length === 0) {
     songsArr = songs;
   }
-  console.log(songsArr);
-
   let randomIndexSong = Math.floor(Math.random() * songsArr.length);
   backgroundMusic.src = songsArr[randomIndexSong].path;
-  backgroundMusic.play();
-  songsArr.splice(randomIndexSong, 1);
+  return randomIndexSong;
 }
+playRandomSong();
 
 //Turn music on and off
-let songsArr = [...songs];
 soundToggle.onclick = function () {
   toggleSound = !toggleSound;
   if (toggleSound) {
     soundToggle.innerHTML = "";
     soundToggle.innerHTML = `<i class="fa-solid fa-volume-xmark"></i>`;
-    playRandomSong();
-    backgroundMusic.onended = function () {
-      playRandomSong();
-      console.log(songsArr);
-    };
+    backgroundMusic.play();
   } else {
     soundToggle.innerHTML = "";
     soundToggle.innerHTML = `<i class="fa-solid fa-volume-high"></i>`;
     backgroundMusic.pause();
   }
   console.log(toggleSound);
+};
+
+//play next random song when it finish the previous song
+backgroundMusic.onended = function (randomIndexSong) {
+  songsArr.splice(randomIndexSong, 1);
+  playRandomSong();
+  backgroundMusic.play();
+  console.log(songsArr);
 };
 //Animation snow flakes
 document.addEventListener("DOMContentLoaded", function () {
