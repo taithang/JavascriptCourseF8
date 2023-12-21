@@ -376,6 +376,7 @@ function winner(removedItem, index) {
     renderSpin();
     render();
     congratulations.style.display = "none";
+    clap.load();
   };
 
   //Turn off message when click cancel
@@ -388,6 +389,7 @@ function winner(removedItem, index) {
     renderSpin();
     render();
     congratulations.style.display = "none";
+    clap.load();
   };
 }
 

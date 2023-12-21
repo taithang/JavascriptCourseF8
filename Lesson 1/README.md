@@ -786,3 +786,21 @@ console.log(html);
 **_Optional chaining_**
 
 - ?. :dùng để coi thử key của object nó có giá trị hay không, nếu không có nó sẽ trả về undefined. Có thể dùng cho key của object hoặc array hoặc function.
+
+## 11. IIFE, Scope, Closure
+
+**_IIFE_**
+
+- Định nghĩa: là viết tắt của "Immediately Invoked Function Expression", trong tiếng Việt có thể hiểu là "Biểu thức hàm tức thì được gọi ngay lập tức". Đây là một cú pháp trong JavaScript cho phép bạn định nghĩa và gọi một hàm ngay lập tức sau khi nó được định nghĩa.
+- Trước khi dùng IIFE thì chúng ta phải thêm dấu ';' trước hàm IIFE
+- Syntax:
+  ` (function() {
+// Mã của bạn ở đây
+}) ()`
+- Example:
+
+```JavaScript
+  (function() {
+    console.log('Now Now')
+  }) ()
+```
