@@ -804,3 +804,29 @@ console.log(html);
     console.log('Now Now')
   }) ()
 ```
+
+**_Scope_**
+
+- Định nghĩa:
+  Scope trong JavaScript đề cập đến phạm vi của các biến được khai báo và có thể truy cập được trong mã. Scope xác định nơi mà các biến và hàm có thể được truy cập trong mã JavaScript và trong đó chúng có thể tồn tại.
+- Có ba loại scope:
+  - Global Scope: Biến được khai báo ở ngoài các hàm hoặc block code, chúng có thể được truy cập từ bất kỳ nơi nào trong mã JavaScript.
+  - Local Scope: Biến được khai báo trong một hàm hoặc block code chỉ có thể truy cập được trong phạm vi của hàm hoặc block đó. Các biến được khai báo bên trong một hàm sử dụng var, let, hoặc const chỉ có thể truy cập được trong hàm đó.
+  - Block scope: let và const cho phép tạo ra các biến có phạm vi chỉ trong một block code nhất định, chẳng hạn như if, for, while. Các biến được khai báo bằng var không có phạm vi block scope.
+
+**_Closure_**
+
+- Định nghĩa: Closure trong JavaScript là khả năng của một hàm để truy cập và "ghi nhớ" các biến từ phạm vi bên ngoài của nó, ngay cả sau khi hàm đã kết thúc thực thi. Điều này cho phép hàm closure vẫn có thể sử dụng các biến bên ngoài của nó ngay cả khi chúng đã ra khỏi phạm vi của nó.
+
+## 12. Hoisting, Strict Mode, Data Types
+
+**_Hoisting_**
+
+- Định nghĩa: Hoisting là một tính chất của JavaScript mà cho phép các biến được khai báo và các hàm được định nghĩa được "nâng lên" (hoisted) lên đầu phạm vi của chúng trước khi mã JavaScript được thực thi. Điều này có nghĩa là bạn có thể sử dụng các biến hoặc hàm trước khi chúng được khai báo trong mã.
+- Khai báo biến sẽ được đưa lên đầu nhưng giá trị thì không. Các hàm được định nghĩa thông qua function declaration cũng được nâng lên và có thể gọi trước khi chúngd được khai báo
+
+**_Strict Mode_**
+
+- Định nghĩa: Strict Mode là một tính năng của JavaScript, khi được kích hoạt, nó giúp kiểm soát chặt chẽ hơn các lỗi phổ biến và chế ngự một số hành vi không an toàn trong ngôn ngữ.
+- Để kích hoạt strict mode chúng ta viết nó vào đầu nội dung của file có đuôi là js. Để kích hoạt strict mode ở trong một hàm chúng ta phải viết vào đầu dòng trong hàm đó.
+- Strict mode giúp chúng ta tránh được nhiều lỗi lập trình thông thường. Cung cấp môi trường làm việc tốt hơn để viết mã sạch hơn và ít lỗi hơn. Nâng cao bảo mật và kiểm soát hành vi của chương trình Javascript.
