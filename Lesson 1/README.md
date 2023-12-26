@@ -860,7 +860,7 @@ function hello(name, age) {
 
 const person = {role: 'user'}
 
-hello.bind(person, ['Thang', '24'])
+hello.apply(person, ['Thang', '24'])
 //Output: Hello, Thang! I am user and I am 24 years old.
 ```
 
