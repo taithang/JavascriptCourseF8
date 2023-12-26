@@ -834,7 +834,7 @@ console.log(html);
 ## 13. bind(), call(), apply(),
 
 - Định nghĩa: call, bind, apply là các method của function, dùng để thay đổi ngữ cảnh của this và truyền đối số cho hàm.
-- Call(): dùng để gọi một hàm và thiết lập giá trị của this trong hàm đó. Nó cũng cho phéo-p truyền đối số vào hàm dưới dạng danh sách các đối số.
+- Call(): dùng để gọi một hàm và thiết lập giá trị của this trong hàm đó. Nó cũng cho phép truyền đối số vào hàm dưới dạng danh sách các đối số.
 
 Example:
 
