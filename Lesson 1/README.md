@@ -823,10 +823,60 @@ console.log(html);
 **_Hoisting_**
 
 - Định nghĩa: Hoisting là một tính chất của JavaScript mà cho phép các biến được khai báo và các hàm được định nghĩa được "nâng lên" (hoisted) lên đầu phạm vi của chúng trước khi mã JavaScript được thực thi. Điều này có nghĩa là bạn có thể sử dụng các biến hoặc hàm trước khi chúng được khai báo trong mã.
-- Khai báo biến sẽ được đưa lên đầu nhưng giá trị thì không. Các hàm được định nghĩa thông qua function declaration cũng được nâng lên và có thể gọi trước khi chúngd được khai báo
+- Khai báo biến sẽ được đưa lên đầu nhưng giá trị thì không. Các hàm được định nghĩa thông qua function declaration cũng được nâng lên và có thể gọi trước khi chúng được khai báo
 
 **_Strict Mode_**
 
 - Định nghĩa: Strict Mode là một tính năng của JavaScript, khi được kích hoạt, nó giúp kiểm soát chặt chẽ hơn các lỗi phổ biến và chế ngự một số hành vi không an toàn trong ngôn ngữ.
 - Để kích hoạt strict mode chúng ta viết nó vào đầu nội dung của file có đuôi là js. Để kích hoạt strict mode ở trong một hàm chúng ta phải viết vào đầu dòng trong hàm đó.
 - Strict mode giúp chúng ta tránh được nhiều lỗi lập trình thông thường. Cung cấp môi trường làm việc tốt hơn để viết mã sạch hơn và ít lỗi hơn. Nâng cao bảo mật và kiểm soát hành vi của chương trình Javascript.
+
+## 13. bind(), call(), apply(),
+
+- Định nghĩa: call, bind, apply là các method của function, dùng để thay đổi ngữ cảnh của this và truyền đối số cho hàm.
+- Call(): dùng để gọi một hàm và thiết lập giá trị của this trong hàm đó. Nó cũng cho phéo-p truyền đối số vào hàm dưới dạng danh sách các đối số.
+
+Example:
+
+```Javascript
+function hello(name) {
+  console.log(`Hello, ${name}! I am ${this.role}.`)
+}
+
+const person = {role: 'admin'}
+
+hello.call(person, 'Thang')
+//Output: Hello, Thang! I am admin.
+```
+
+- Apply(): tương tự như call(), nhưng nó nhận đối dưới dạng một mảng
+
+Example:
+
+```JavaScript
+function hello(name, age) {
+  console.log(`Hello, ${name}! I am ${this.role} and I am ${age} years old.`)
+}
+
+const person = {role: 'user'}
+
+hello.bind(person, ['Thang', '24'])
+//Output: Hello, Thang! I am user and I am 24 years old.
+```
+
+- Bind(): bind không gọi trực tiếp hàm như call và apply, nó tạo ra một phiên bản mới của hàm và thiết lập giá trị của this, nhưng không gọi hàm ngay lập tức. Nó trả về một hàm mới với ngữ cảnh this được xác định sẵn.
+
+Example:
+
+```Javascript
+function hello(name) {
+  console.log(`Hello, ${name}! I am ${this.role}.`)
+}
+
+const person = {role: 'moderator'}
+
+const helloPerson = hello.bind(person)
+
+helloPerson('Thang');
+//Output: Hello, Thang! I am moderator.
+```
